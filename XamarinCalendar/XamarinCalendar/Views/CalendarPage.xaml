@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:XamarinCalendar.ViewModels"
+             x:Class="XamarinCalendar.Views.CalendarPage"
+             CurrentDate="{Binding CurrentDate}">
+    <ContentPage.BindingContext>
+        <vm:CalendarPageViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid x:Name="calendarGrid" 
+              WidthRequest="1286"
+              HeightRequest="900"
+              VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+              BackgroundColor="Black" Opacity="0.92"
+              Padding="7, 7, 7, 7">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <RelativeLayout x:Name="TopArea" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                            BackgroundColor="Transparent" WidthRequest="1286">
+                <StackLayout x:Name="TitleArea" Orientation="Horizontal" HorizontalOptions="CenterAndExpand"
+                             RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1.0}"
+                             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5}"
+                             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.25}">
+                    <Button x:Name="PrevBtn" Text="&lt;"  FontSize="Large" BackgroundColor="Transparent"
+                            Focused="OnPrevBtnFocused"
+                            Command="{Binding PrevBtnCommand}"/>
+                    <Label x:Name="CurMonth"
+                           FontSize="64"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Button x:Name="NextBtn" Text="&gt;" FontSize="Large" BackgroundColor="Transparent"
+                            Focused="OnNextBtnFocused"
+                            Command="{Binding NextBtnCommand}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand"
+                             RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1.0}"
+                             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                             RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.0}"
+                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.8}">
+                    <AbsoluteLayout>
+                        <Button x:Name="RefreshBtn"
+                                BackgroundColor="Transparent"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+                                Focused="OnRefreshBtnFocused"
+                                Unfocused="OnRefreshBtnUnfocused"
+                                Command="{Binding RefreshBtnCommand}"/>
+                        <Image x:Name="RefreshImg"
+                               Source="btn_calendar_refresh_normal.png"
+                               WidthRequest="50" Aspect="AspectFit"
+                               HorizontalOptions="Center" VerticalOptions="Center"
+                               AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+                    </AbsoluteLayout>
+                    <AbsoluteLayout>
+                        <Button x:Name="LogoutBtn"
+                                BackgroundColor="Transparent"
+                                AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+                                Focused="OnLogoutBtnFocused"
+                                Unfocused="OnLogoutBtnUnfocused"
+                                Clicked="OnLogoutBtnClicked"/>
+                        <Image x:Name="LogoutImg"
+                               Source="btn_calendar_logout_normal.png"
+                               WidthRequest="50" Aspect="AspectFit"
+                               HorizontalOptions="Center" VerticalOptions="Center"
+                               AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+                    </AbsoluteLayout>
+                </StackLayout>
+            </RelativeLayout>    
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

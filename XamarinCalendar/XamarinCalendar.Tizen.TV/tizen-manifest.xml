@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.XamarinCalendar.Tizen.TV" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <profile name="tv" />
+    <ui-application appid="org.tizen.example.XamarinCalendar.Tizen.TV" exec="XamarinCalendar.Tizen.TV.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
+        <label>XamarinCalendar.Tizen.TV</label>
+        <icon>XamarinCalendar.Tizen.TV.png</icon>
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/notification</privilege>
+        <privilege>http://tizen.org/privilege/alarm.get</privilege>
+        <privilege>http://tizen.org/privilege/alarm.set</privilege>
+    </privileges>
+</manifest>

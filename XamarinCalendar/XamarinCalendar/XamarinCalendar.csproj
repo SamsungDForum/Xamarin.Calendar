@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controls\EventList.xaml.cs" />
+    <Compile Remove="Models\GoogleRefreshTokenData.cs" />
+    <Compile Remove="Services\IAuthService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Controls\EventList.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Controls\EventList.xaml" />
+  </ItemGroup>
+
+  <!-- Include Nuget Package for Xamarin building -->
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.29.1.978" />
+    <PackageReference Include="Tizen.NET" Version="4.0.0-preview1-00160" />
+    <PackageReference Include="Xamarin.Forms" Version="2.4.0.266-pre1" />
+    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.4.0-r266-006" />
+  </ItemGroup>
+
+</Project>

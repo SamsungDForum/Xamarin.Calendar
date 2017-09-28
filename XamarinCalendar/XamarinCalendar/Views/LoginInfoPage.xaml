@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:XamarinCalendar.ViewModels"
+             x:Class="XamarinCalendar.Views.LoginInfoPage"
+             CodeData="{Binding CodeData}">
+    <ContentPage.BindingContext>
+        <vm:LoginInfoPageViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <RelativeLayout
+            WidthRequest="1286"
+            HeightRequest="723"
+            VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+            BackgroundColor="Black" Opacity="0.9">
+            <StackLayout Spacing ="20"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.7}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1.0}"
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.03}">
+                <Label Text="1. Visit the page using your phone or PC."
+                       TextColor="Gray" FontSize="Medium"/>
+                <Label x:Name="verificationUrl"
+                       TextColor="White" FontSize="Large"/>
+                <Label Text="2. Enter below code in the page." 
+                       TextColor="Gray" FontSize="Medium"/>
+                <Label x:Name="userCode"
+                       TextColor="White" FontSize="Large"/>
+            </StackLayout>
+            <Button x:Name="CancelBtn"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.8}"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.03}"
+                    Text="Cancel"
+                    FontSize="Medium"
+                    Clicked="OnBtnClicked">
+            </Button>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

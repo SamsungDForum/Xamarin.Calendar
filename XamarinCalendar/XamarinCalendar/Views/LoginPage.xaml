@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinCalendar.Views.LoginPage">
+    <ContentPage.Content>
+        <RelativeLayout
+            WidthRequest="1286"
+            HeightRequest="723"
+            VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+            BackgroundColor="Black" Opacity="0.9">
+            <StackLayout RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.7}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1.0}"
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.03}">
+                <Label Text="Welcome!"
+                       TextColor="Gray" FontSize="Large"/>
+                <Label Text="Please login with Google account"
+                       TextColor="Gray" FontSize="Medium"/>
+            </StackLayout>
+            <Button x:Name="LoginBtn"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.3}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.8}"
+                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.03}"
+                    Text="Login"
+                    FontSize="Medium"
+                    Clicked="OnBtnClicked">                
+            </Button>                
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>
