@@ -21,6 +21,7 @@
                 <Label Text="1. Visit the page using your phone or PC."
                        TextColor="Gray" FontSize="Medium"/>
                 <Label x:Name="verificationUrl"
+                       Text="Loading..."
                        TextColor="White" FontSize="Large"/>
                 <Label Text="2. Enter below code in the page." 
                        TextColor="Gray" FontSize="Medium"/>

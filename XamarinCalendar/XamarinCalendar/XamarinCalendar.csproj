@@ -25,7 +25,6 @@
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.75255-pre3" />
-    <PackageReference Include="Xamarin.Forms.Platform.Tizen" Version="2.5.0.75255-pre3" />
   </ItemGroup>
 
 </Project>

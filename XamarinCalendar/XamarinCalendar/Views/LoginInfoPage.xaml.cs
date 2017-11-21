@@ -41,9 +41,19 @@ namespace XamarinCalendar.Views
             }
         }
 
-        void RequestAccountDone(object sender, EventArgs e)
+        private void RequestAccountDone(object sender, EventArgs e)
         {
-            LaunchCalendar();
+            LoginEventArgs args = e as LoginEventArgs;
+
+            if (args.Result == LoginResult.OK)
+            {
+                LaunchCalendar();
+            }
+            else
+            {
+                verificationUrl.Text = "Failed to get URL";
+                userCode.Text = "T_T";
+            }
         }
 
         private void UpdateCodeInfo()

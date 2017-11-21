@@ -1,13 +1,25 @@
 ﻿using System;
-
 using System.ComponentModel;
-using System.Threading;
-using System.Threading.Tasks;
-
 using XamarinCalendar.Models;
 
 namespace XamarinCalendar.ViewModels
 {
+    public enum LoginResult
+    {
+        OK,
+        ERR,
+    }
+
+    class LoginEventArgs : EventArgs
+    {
+        public LoginResult Result { get; set; }
+
+        public LoginEventArgs(LoginResult r)
+        {
+            Result = r;
+        }
+    }
+
     class LoginInfoPageViewModel : INotifyPropertyChanged
     {
         GoogleCodeData codeData;
@@ -43,18 +55,21 @@ namespace XamarinCalendar.ViewModels
             await App.AppAccountManager.Prepare();
             CodeData = App.AppAccountManager.codeData;
 
-            RequestTokenData();
+            if (CodeData == null)
+                OnRequestDone(LoginResult.ERR);
+            else
+                RequestTokenData();
         }
 
         private async void RequestTokenData()
         {
             await App.AppAccountManager.RequestAccount();
-            OnRequestDone();
+            OnRequestDone(LoginResult.OK);
         }
 
-        protected void OnRequestDone()
+        protected void OnRequestDone(LoginResult Result)
         {
-            RequestAccountDone?.Invoke(this, EventArgs.Empty);
+            RequestAccountDone?.Invoke(this, new LoginEventArgs(Result));
         }
 
         protected void OnPropertyChanged(string propertyName)

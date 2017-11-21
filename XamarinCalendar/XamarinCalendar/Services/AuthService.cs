@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 using XamarinCalendar.Models;
+using Tizen;
 
 namespace XamarinCalendar.Services
 {
@@ -32,13 +33,22 @@ namespace XamarinCalendar.Services
                + "?client_id=" + clientId
                + "&scope=" + scope;
 
-            var httpClient = new HttpClient();
+            try
+            {
+                var httpClient = new HttpClient();
 
-            var response = await httpClient.PostAsync(requestUrl, null);
-            var json = await response.Content.ReadAsStringAsync();
+                var response = await httpClient.PostAsync(requestUrl, null);
+                response.EnsureSuccessStatusCode();
 
-            codeData = JsonConvert.DeserializeObject<GoogleCodeData>(json);
-            
+                var json = await response.Content.ReadAsStringAsync();
+                codeData = JsonConvert.DeserializeObject<GoogleCodeData>(json);
+            }
+            catch (HttpRequestException e)
+            {
+                Log.Error("CALENDAR", e.Message);
+                return null;
+            }
+
             return codeData;
         }
 
@@ -51,15 +61,23 @@ namespace XamarinCalendar.Services
                    + "&code=" + deviceCode
                    + "&grant_type=http://oauth.net/grant_type/device/1.0";
 
-            var httpClient = new HttpClient();
-
-            var response = await httpClient.PostAsync(requestUrl, null);
-
             tokenData = null;
-            if (response.StatusCode.ToString().Equals("OK"))
+
+            try
             {
-                var json = await response.Content.ReadAsStringAsync();
-                tokenData = JsonConvert.DeserializeObject<GoogleTokenData>(json);
+                var httpClient = new HttpClient();
+
+                var response = await httpClient.PostAsync(requestUrl, null);
+
+                if (response.StatusCode.ToString().Equals("OK"))
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    tokenData = JsonConvert.DeserializeObject<GoogleTokenData>(json);
+                }
+            }
+            catch (HttpRequestException e)
+            {
+                Log.Error("CALENDAR", e.Message);
             }
 
             return tokenData;
@@ -71,7 +89,14 @@ namespace XamarinCalendar.Services
                 "https://accounts.google.com/o/oauth2/revoke"
                 + "?token=" + refreshToken;
 
-            var httpClient = new HttpClient();
+            try
+            {
+                var httpClient = new HttpClient();
+            }
+            catch (HttpRequestException e)
+            {
+                Log.Error("CALENDAR", e.Message);
+            }
         }
     }
 }
