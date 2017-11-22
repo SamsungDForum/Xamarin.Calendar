@@ -33,6 +33,8 @@ namespace XamarinCalendar.Services
                + "?client_id=" + clientId
                + "&scope=" + scope;
 
+            codeData = null;
+
             try
             {
                 var httpClient = new HttpClient();
@@ -46,7 +48,6 @@ namespace XamarinCalendar.Services
             catch (HttpRequestException e)
             {
                 Log.Error("CALENDAR", e.Message);
-                return null;
             }
 
             return codeData;
@@ -68,6 +69,7 @@ namespace XamarinCalendar.Services
                 var httpClient = new HttpClient();
 
                 var response = await httpClient.PostAsync(requestUrl, null);
+                response.EnsureSuccessStatusCode();
 
                 if (response.StatusCode.ToString().Equals("OK"))
                 {
