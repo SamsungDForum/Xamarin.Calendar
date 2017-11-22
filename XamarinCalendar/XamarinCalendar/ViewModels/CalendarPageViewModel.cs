@@ -90,13 +90,17 @@ namespace XamarinCalendar.ViewModels
 
             ItemList.Clear();
 
-            events = _calendarDataService.GetEvent(firstDay, firstDay.AddDays(DateTime.DaysInMonth(firstDay.Year, firstDay.Month)));
-
             for (int i = 1; i <= DateTime.DaysInMonth(CurrentDate.Year, CurrentDate.Month); i++)
             {
                 data = new CalendarItemData(i);
                 ItemList.Add(data);
             }
+
+            OnPropertyChanged("CurrentDate");
+
+            events = _calendarDataService.GetEvent(firstDay, firstDay.AddDays(DateTime.DaysInMonth(firstDay.Year, firstDay.Month)));
+            if (events == null)
+                return;
 
             foreach (Event e in events.Items)
             {
@@ -129,8 +133,6 @@ namespace XamarinCalendar.ViewModels
                     }
                 }
             }
-
-            OnPropertyChanged("CurrentDate");
         }
 
         protected void OnPropertyChanged(string propertyName)

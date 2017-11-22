@@ -6,6 +6,8 @@ using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 
+using Tizen;
+
 namespace XamarinCalendar.Services
 {
     class CalendarDataService
@@ -57,13 +59,22 @@ namespace XamarinCalendar.Services
 
         public Events GetEvent(DateTime from, DateTime to)
         {
-            EventsResource.ListRequest request = service.Events.List("primary");
-            request.TimeMin = from;
-            request.TimeMax = to;
-            request.SingleEvents = true;
-            request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
+            Events events = null;
 
-            Events events = request.Execute();
+            try
+            {
+                EventsResource.ListRequest request = service.Events.List("primary");
+                request.TimeMin = from;
+                request.TimeMax = to;
+                request.SingleEvents = true;
+                request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
+
+                events = request.Execute();
+            }
+            catch (Exception e)
+            {
+                Log.Error("CALENDAR", e.Message);
+            }
 
             return events;
         }
