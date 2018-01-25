@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest package="org.tizen.example.XamarinCalendar.Tizen.TV" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+    <feature name="http://tizen.org/feature/screen.size.normal.1080.1920">true</feature>
     <profile name="tv" />
     <ui-application appid="org.tizen.example.XamarinCalendar.Tizen.TV" exec="XamarinCalendar.Tizen.TV.dll" multiple="false" nodisplay="false" taskmanage="true" splash-screen-display="true" type="dotnet" launch_mode="single">
         <label>XamarinCalendar.Tizen.TV</label>
@@ -11,4 +12,7 @@
         <privilege>http://tizen.org/privilege/alarm.get</privilege>
         <privilege>http://tizen.org/privilege/alarm.set</privilege>
     </privileges>
+    <tv-info api-version="4.4.0">
+        <infolink>T-INFOLINK2018-1000</infolink>
+    </tv-info>
 </manifest>
